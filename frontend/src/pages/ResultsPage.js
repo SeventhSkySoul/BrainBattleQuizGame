@@ -145,23 +145,23 @@ export default function ResultsPage() {
               key={team}
               style={{
                 textAlign: 'center', padding: '2rem 3rem',
-                border: `2px solid ${winner === team ? TEAM_COLORS[team].text : '#1f1f1f'}`,
+                border: `2px solid ${winner === team ? tc[team].text : '#1f1f1f'}`,
                 background: winner === team ? `rgba(${team === 'A' ? '255,107,53' : '0,180,216'},0.1)` : '#0A0A0A',
                 flex: '1', minWidth: 150, maxWidth: 250,
               }}
               data-testid={`team-${team}-final-score`}
             >
-              <div style={{ fontFamily: 'Space Mono', fontSize: '0.65rem', color: TEAM_COLORS[team].text, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.5rem' }}>
+              <div style={{ fontFamily: 'Space Mono', fontSize: '0.65rem', color: tc[team].text, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.5rem' }}>
                 КОМАНДА {team === 'A' ? 'А' : 'Б'}
               </div>
-              <div style={{ fontFamily: 'Syne', fontSize: '3.5rem', fontWeight: 900, color: winner === team ? TEAM_COLORS[team].text : '#A3A3A3', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'Syne', fontSize: '3.5rem', fontWeight: 900, color: winner === team ? tc[team].text : '#A3A3A3', lineHeight: 1 }}>
                 {scores[team]}
               </div>
               <div style={{ fontFamily: 'Space Mono', fontSize: '0.6rem', color: '#A3A3A3', marginTop: '0.25rem' }}>
                 ОЧКОВ
               </div>
               {winner === team && (
-                <div style={{ marginTop: '0.5rem', fontFamily: 'Space Mono', fontSize: '0.6rem', color: TEAM_COLORS[team].text }}>
+                <div style={{ marginTop: '0.5rem', fontFamily: 'Space Mono', fontSize: '0.6rem', color: tc[team].text }}>
                   ПОБЕДИТЕЛИ
                 </div>
               )}
@@ -177,7 +177,7 @@ export default function ResultsPage() {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {sortedPlayers.map((player, i) => {
-            const teamColor = isTeams ? TEAM_COLORS[player.team]?.text : '#3455eb';
+            const teamColor = isTeams ? tc[player.team]?.text : '#3455eb';
             const avgTime = player.answers_count > 0
               ? (player.total_response_time / player.answers_count).toFixed(1)
               : '—';
@@ -255,7 +255,7 @@ export default function ResultsPage() {
                 <div style={{ fontFamily: 'Space Mono', fontSize: '0.65rem' }}>
                   <span style={{ color: '#A3A3A3' }}>Q{h.question_index + 1}</span>
                   {' '}
-                  <span style={{ color: isTeams ? TEAM_COLORS[h.team]?.text : '#3455eb' }}>{h.player_name}</span>
+                  <span style={{ color: isTeams ? tc[h.team]?.text : '#3455eb' }}>{h.player_name}</span>
                 </div>
                 <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                   <span style={{ fontFamily: 'Space Mono', fontSize: '0.6rem', color: '#A3A3A3' }}>
