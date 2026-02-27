@@ -342,6 +342,8 @@ select.bb-input option {
   h2 { font-size: 1.25rem; }
   .bb-btn { padding: 0.6rem 0.875rem; font-size: 0.6rem; letter-spacing: 0.05em; }
   .logo-3d { width: 44px; height: 44px; font-size: 0.9rem; }
+  /* Hide extra text on mobile to save space */
+  .hide-mobile { display: none; }
 }
 
 @media (max-width: 400px) {
