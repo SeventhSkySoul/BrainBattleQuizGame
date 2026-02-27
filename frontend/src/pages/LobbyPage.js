@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGame } from '../context/GameContext';
-import { TEAM_COLORS, storage, STORAGE_KEYS, API, DIFFICULTY_LABELS, MODE_LABELS } from '../utils';import axios from 'axios';
+import { getTeamColors, DEFAULT_TEAM_COLORS, storage, STORAGE_KEYS, API, DIFFICULTY_LABELS, MODE_LABELS } from '../utils';import axios from 'axios';
 
 function PlayerCard({ player, isCurrentUser, isHost, teamColor }) {
   return (
