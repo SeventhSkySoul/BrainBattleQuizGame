@@ -72,7 +72,7 @@ export default function HomePage() {
   const [timePerQ, setTimePerQ] = useState(30);
   const [showAdvanced, setShowAdvanced] = useState(false);
 
-  // Check for existing session
+  // Check for existing session + handle invite PIN from URL
   useEffect(() => {
     const gameId = storage.get(STORAGE_KEYS.GAME_ID);
     const pId = storage.get(STORAGE_KEYS.PLAYER_ID);
@@ -85,6 +85,14 @@ export default function HomePage() {
     // Prefill name
     if (user) setPlayerName(user.username);
     else if (pName) setPlayerName(pName);
+
+    // Handle invite link: ?pin=XXXXXX
+    const urlParams = new URLSearchParams(window.location.search);
+    const invitePin = urlParams.get('pin');
+    if (invitePin) {
+      setPin(invitePin.toUpperCase());
+      setMode('join');
+    }
   }, [user]);
 
   const handleRejoin = async () => {
