@@ -291,7 +291,8 @@ export default function GamePage() {
   const timerColor = timerPercent > 50 ? '#3455eb' : timerPercent > 25 ? '#FFD600' : '#FF3366';
 
   const currentTeam = game.mode === 'teams' ? game.current_team : null;
-  const teamColor = currentTeam ? TEAM_COLORS[currentTeam] : null;
+  const tc = getTeamColors(game);
+  const teamColor = currentTeam ? tc[currentTeam] : null;
 
   let currentAnsweringPlayer = null;
   if (game.mode === 'teams' && currentTeam) {
