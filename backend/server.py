@@ -804,9 +804,10 @@ async def advance_question(game: dict, reason: str = "timeout"):
     asyncio.create_task(question_timer(game))
 
 async def question_timer(game: dict):
-    """Timer for each question"""
+    """Timer for each question — keyed by (game_id, q_idx, start_time) to avoid duplicates"""
     game_id = game["id"]
     q_idx = game["current_question_index"]
+    start_time = game["question_start_time"]
     time_limit = game["time_per_question"]
     
     await asyncio.sleep(time_limit)
@@ -821,8 +822,10 @@ async def question_timer(game: dict):
     if not current_game:
         return
     
+    # Guard: only fire if we're still on the exact same question + start_time
     if (current_game["state"] == "in_progress" and 
-        current_game["current_question_index"] == q_idx and 
+        current_game["current_question_index"] == q_idx and
+        current_game["question_start_time"] == start_time and
         not current_game["answer_given"]):
         
         logger.info(f"Timer expired for game {game_id}, question {q_idx}")
