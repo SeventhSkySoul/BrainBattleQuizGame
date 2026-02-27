@@ -742,23 +742,45 @@ async def handle_skip(game: dict, player_id: str):
     return {"error": "Нельзя пропустить"}
 
 async def advance_question_skip(game: dict):
-    """Skip: move to next question without switching team or updating player index"""
+    """Skip: same team keeps turn, but a replacement question is appended so both teams answer equal count"""
     if game["state"] == "finished":
         return
-    
+
     q_idx = game["current_question_index"]
     total_q = len(game["questions"])
-    
+    skipped_team = game["current_team"]
+
+    # Track skip count per team
+    game["skips"][skipped_team] = game["skips"].get(skipped_team, 0) + 1
+
+    # Fetch a replacement question from backup pool or generate one
+    replacement = None
+    if game.get("backup_pool"):
+        replacement = game["backup_pool"].pop(0)
+    else:
+        # Lazily load more backup questions
+        extra = get_backup_questions(game["topic"], game["difficulty"], 5)
+        if extra:
+            replacement = extra[0]
+            game["backup_pool"] = extra[1:]
+
+    if replacement:
+        # Insert replacement question right after current index (for same team's next turn in sequence)
+        # Append at the end so total count grows — both teams stay balanced
+        game["questions"].append(replacement)
+        logger.info(f"Skip: replacement question added for team {skipped_team}. Total questions now: {len(game['questions'])}")
+
+    # Move to next question index — same team keeps turn (do NOT switch current_team)
     game["current_question_index"] = q_idx + 1
-    
-    if game["current_question_index"] >= total_q:
+
+    if game["current_question_index"] >= len(game["questions"]):
         await end_game(game)
         return
-    
+
     game["answer_given"] = False
     game["skipped"] = False
     game["question_start_time"] = datetime.now(timezone.utc).isoformat()
-    
+
     await broadcast_game_state(game, extra={"event": "next_question"})
     asyncio.create_task(question_timer(game))
 
