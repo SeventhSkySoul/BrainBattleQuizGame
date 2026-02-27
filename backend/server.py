@@ -372,11 +372,14 @@ async def create_game(data: CreateGameRequest, user: Optional[dict] = Depends(ge
             "answers_count": 0,
         }],
         "teams": {"A": [], "B": []},
+        "team_colors": _pick_team_colors(),
         "questions": questions,
+        "backup_pool": [],  # extra questions for skip replacements
         "current_question_index": 0,
         "current_team": "A",
         "current_player_index": {"A": 0, "B": 0},
         "scores": {"A": 0, "B": 0},
+        "skips": {"A": 0, "B": 0},  # skips per team to track equality
         "question_start_time": None,
         "answer_given": False,
         "skipped": False,
