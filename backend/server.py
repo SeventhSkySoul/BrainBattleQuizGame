@@ -993,15 +993,56 @@ async def get_game_stats(game_id: str):
 
 @api_router.get("/games/{game_id}/export")
 async def export_game_results(game_id: str):
-    """Export game results as JSON"""
+    """Export game results as formatted TXT file"""
     history = await db.game_history.find_one({"game_id": game_id}, {"_id": 0})
     if not history:
         raise HTTPException(status_code=404, detail="Статистика не найдена")
     
-    from fastapi.responses import JSONResponse
-    return JSONResponse(
-        content=history,
-        headers={"Content-Disposition": f"attachment; filename=game_{game_id[:8]}_results.json"}
+    from fastapi.responses import Response
+    
+    lines = []
+    lines.append("=" * 50)
+    lines.append("  BRAINBATTLE — РЕЗУЛЬТАТЫ ИГРЫ")
+    lines.append("=" * 50)
+    lines.append(f"Тема:         {history.get('topic', '—')}")
+    lines.append(f"Режим:        {'Командный' if history.get('mode') == 'teams' else 'Каждый за себя'}")
+    lines.append(f"Сложность:    {history.get('difficulty', '—')}")
+    lines.append(f"Победитель:   {'Команда А' if history.get('winner') == 'A' else 'Команда Б' if history.get('winner') == 'B' else history.get('winner', '—')}")
+    lines.append(f"Дата:         {history.get('finished_at', '—')[:10] if history.get('finished_at') else '—'}")
+    lines.append("")
+    
+    if history.get('mode') == 'teams':
+        scores = history.get('scores', {})
+        lines.append(f"СЧЁТ: Команда А {scores.get('A', 0)} : {scores.get('B', 0)} Команда Б")
+        lines.append("")
+    
+    lines.append("СТАТИСТИКА ИГРОКОВ:")
+    lines.append("-" * 50)
+    players = sorted(history.get('players', []), key=lambda p: p.get('score', 0), reverse=True)
+    for i, p in enumerate(players, 1):
+        avg_time = f"{p.get('total_response_time', 0) / max(p.get('answers_count', 1), 1):.1f}с"
+        team_str = f" [Команда {'А' if p.get('team') == 'A' else 'Б'}]" if history.get('mode') == 'teams' else ""
+        lines.append(f"  #{i} {p.get('name', '?')}{team_str}")
+        lines.append(f"     Очки: {p.get('score', 0)}  |  Правильно: {p.get('correct_answers', 0)}  |  Неверно: {p.get('wrong_answers', 0)}  |  Среднее время: {avg_time}")
+    
+    lines.append("")
+    lines.append("ИСТОРИЯ ВОПРОСОВ:")
+    lines.append("-" * 50)
+    for h in history.get('round_history', []):
+        result = "✓" if h.get('is_correct') else "✗"
+        lines.append(f"  Q{h.get('question_index', 0)+1} | {h.get('player_name', '?')} | {result} | {h.get('response_time', 0):.1f}с | +{h.get('points', 0)} очков")
+    
+    lines.append("")
+    lines.append("=" * 50)
+    lines.append("  BRAINBATTLE — quizbattle.game")
+    lines.append("=" * 50)
+    
+    content = "\n".join(lines)
+    
+    return Response(
+        content=content.encode('utf-8'),
+        media_type='text/plain; charset=utf-8',
+        headers={"Content-Disposition": f"attachment; filename=brainbattle_{game_id[:8]}_results.txt"}
     )
 
 @api_router.get("/user/{user_id}/history")
