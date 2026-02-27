@@ -245,7 +245,7 @@ export default function LobbyPage() {
             </div>
             <AnimatePresence>
               {teamBPlayers.map(p => (
-                <PlayerCard key={p.id} player={p} isCurrentUser={p.id === currentPlayerId} isHost={p.is_host} teamColor={TEAM_COLORS.B} />
+                <PlayerCard key={p.id} player={p} isCurrentUser={p.id === currentPlayerId} isHost={p.is_host} teamColor={tc.B} />
               ))}
               {teamBPlayers.length === 0 && (
                 <div style={{ color: '#333', fontFamily: 'Space Mono', fontSize: '0.65rem', padding: '0.5rem 0', textAlign: 'center', userSelect: 'none' }}>пусто</div>
