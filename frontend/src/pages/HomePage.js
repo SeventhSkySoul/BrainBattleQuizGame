@@ -189,21 +189,21 @@ export default function HomePage() {
       }} />
 
       {/* Nav */}
-      <nav style={{ position: 'relative', zIndex: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.5rem 2rem', borderBottom: '1px solid #1a1a1a' }}>
+      <nav style={{ position: 'relative', zIndex: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.25rem', borderBottom: '1px solid #1a1a1a', gap: '0.5rem', flexWrap: 'wrap' }}>
         <Logo3D />
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-          <button className="bb-btn" onClick={() => navigate('/leaderboard')} data-testid="nav-leaderboard">
+        <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <button className="bb-btn" onClick={() => navigate('/leaderboard')} data-testid="nav-leaderboard" style={{ fontSize: '0.6rem', padding: '0.5rem 0.75rem' }}>
             РЕЙТИНГ
           </button>
           {user ? (
             <>
-              <button className="bb-btn" onClick={() => navigate('/profile')} data-testid="nav-profile">
+              <button className="bb-btn" onClick={() => navigate('/profile')} data-testid="nav-profile" style={{ fontSize: '0.6rem', padding: '0.5rem 0.75rem', maxWidth: 120, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {user.username}
               </button>
-              <button className="bb-btn bb-btn-red" onClick={logout} data-testid="nav-logout">ВЫЙТИ</button>
+              <button className="bb-btn bb-btn-red" onClick={logout} data-testid="nav-logout" style={{ fontSize: '0.6rem', padding: '0.5rem 0.75rem' }}>ВЫЙТИ</button>
             </>
           ) : (
-            <button className="bb-btn bb-btn-primary" onClick={() => navigate('/auth')} data-testid="nav-auth">ВОЙТИ</button>
+            <button className="bb-btn bb-btn-primary" onClick={() => navigate('/auth')} data-testid="nav-auth" style={{ fontSize: '0.6rem', padding: '0.5rem 0.75rem' }}>ВОЙТИ</button>
           )}
         </div>
       </nav>
