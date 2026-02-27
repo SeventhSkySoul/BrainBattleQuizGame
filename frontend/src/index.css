@@ -192,13 +192,13 @@ h1, h2, h3, h4, h5 {
 
 /* Custom input */
 .bb-input {
-  background: transparent;
-  border: none;
+  background: #0d0d0d;
+  border: 1px solid #2a2a2a;
   border-bottom: 2px solid var(--border);
   color: var(--text);
   font-family: 'Space Mono', monospace;
   font-size: 1rem;
-  padding: 0.75rem 0;
+  padding: 0.75rem 0.5rem;
   width: 100%;
   outline: none;
   transition: border-color 0.2s ease;
@@ -210,6 +210,18 @@ h1, h2, h3, h4, h5 {
 
 .bb-input::placeholder {
   color: var(--text-muted);
+}
+
+/* Select specific styling to fix invisible text */
+select.bb-input {
+  color: var(--text);
+  background-color: #0d0d0d;
+  -webkit-text-fill-color: var(--text);
+}
+
+select.bb-input option {
+  background-color: #1a1a1a;
+  color: #ffffff;
 }
 
 /* BB Button */
@@ -287,7 +299,7 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   padding: 0.25rem 0.75rem;
   border: 1px solid var(--accent);
-  background: rgba(204, 255, 0, 0.1);
+  background: rgba(52, 85, 235, 0.12);
   color: var(--accent);
   font-family: 'Space Mono', monospace;
   font-size: 0.65rem;
