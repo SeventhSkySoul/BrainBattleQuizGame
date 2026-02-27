@@ -222,8 +222,8 @@ export default function GamePage() {
 
   // Timer countdown
   useEffect(() => {
-    if (!timerRunning || game?.state === 'paused') {
-      clearInterval(timerRef.current);
+    clearInterval(timerRef.current);
+    if (!timerRunning || game?.state === 'paused' || game?.state !== 'in_progress') {
       return;
     }
     
@@ -241,7 +241,7 @@ export default function GamePage() {
     }, 1000);
     
     return () => clearInterval(timerRef.current);
-  }, [timerRunning, game?.state]);
+  }, [timerRunning, game?.state, soundEnabled]);
 
   // Sync timer with server when game state updates
   useEffect(() => {
