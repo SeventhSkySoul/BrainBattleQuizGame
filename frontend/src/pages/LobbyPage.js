@@ -178,7 +178,7 @@ export default function LobbyPage() {
           {game && (
             <>
               <span className="bb-badge">{DIFFICULTY_LABELS[game.difficulty] || game.difficulty}</span>
-              <span className="bb-badge" style={{ borderColor: '#00F0FF', color: '#00F0FF', background: 'rgba(0,240,255,0.1)' }}>
+              <span className="bb-badge" style={{ borderColor: '#00F0FF', color: '#00F0FF', background: 'rgba(0,240,255,0.08)' }}>
                 {MODE_LABELS[game.mode] || game.mode}
               </span>
               <span style={{ fontFamily: 'Space Mono', fontSize: '0.7rem', color: '#A3A3A3' }}>
