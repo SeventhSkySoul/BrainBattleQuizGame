@@ -52,7 +52,7 @@ export default function ResultsPage() {
       const url = URL.createObjectURL(res.data);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `brainbattle_${gameId.slice(0, 8)}.json`;
+      a.download = `brainbattle_${gameId.slice(0, 8)}_results.txt`;
       a.click();
       URL.revokeObjectURL(url);
     } catch {
