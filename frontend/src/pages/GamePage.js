@@ -200,9 +200,11 @@ export default function GamePage() {
       setCorrectIndex(null);
       setResultMsg(null);
       
-      // Reset timer
+      // Reset and restart timer immediately
       clearInterval(timerRef.current);
-      if (game.state === 'in_progress' && qIdx < game.questions?.length) {
+      setTimerRunning(false);
+      
+      if (game.state === 'in_progress' && qIdx < (game.questions?.length || 0)) {
         const startTime = game.question_start_time;
         let initial = game.time_per_question || 30;
         
@@ -212,7 +214,8 @@ export default function GamePage() {
         }
         
         setTimeLeft(Math.round(initial));
-        setTimerRunning(true);
+        // Small delay to allow React to clear previous interval
+        setTimeout(() => setTimerRunning(true), 50);
       }
     }
   }, [game?.current_question_index, game?.state]);
