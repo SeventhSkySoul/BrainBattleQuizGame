@@ -355,7 +355,7 @@ export default function GamePage() {
           <span className="bb-badge" data-testid="question-counter">Q {qNum}/{totalQ}</span>
           {game.mode === 'teams' && currentTeam && (
             <span className="bb-badge" style={{ borderColor: teamColor?.text, color: teamColor?.text, background: 'transparent' }}>
-              {currentTeam === 'A' ? 'КОМ. А' : 'КОМ. Б'}
+              {currentTeam === 'A' ? 'КОМАНДА А' : 'КОМАНДА Б'}
             </span>
           )}
           {currentAnsweringPlayer && (
