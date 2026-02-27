@@ -713,12 +713,36 @@ async def handle_skip(game: dict, player_id: str):
         return {"error": "Только ведущий может пропустить вопрос"}
     
     if game["state"] == "in_progress" and not game["answer_given"]:
+        # Skip: do NOT switch teams, do NOT advance player index — just move to next question for SAME team
         game["skipped"] = True
         game["answer_given"] = True
-        await advance_question(game, reason="skipped")
+        await advance_question_skip(game)
         return {"success": True}
     
     return {"error": "Нельзя пропустить"}
+
+async def advance_question_skip(game: dict):
+    """Skip: move to next question without switching team or updating player index"""
+    if game["state"] == "finished":
+        return
+    
+    q_idx = game["current_question_index"]
+    total_q = len(game["questions"])
+    
+    game["current_question_index"] = q_idx + 1
+    
+    if game["current_question_index"] >= total_q:
+        await end_game(game)
+        return
+    
+    game["answer_given"] = False
+    game["skipped"] = False
+    game["question_start_time"] = datetime.now(timezone.utc).isoformat()
+    
+    await broadcast_game_state(game, extra={"event": "next_question"})
+    asyncio.create_task(question_timer(game))
+
+async def handle_next_question(game: dict, player_id: str):
     if game["host_id"] != player_id:
         return {"error": "Только ведущий"}
     await advance_question(game, reason="host_next")
