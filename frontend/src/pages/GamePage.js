@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGame } from '../context/GameContext';
-import { TEAM_COLORS, storage, STORAGE_KEYS, API } from '../utils';
+import { getTeamColors, storage, STORAGE_KEYS, API } from '../utils';
 import axios from 'axios';
 
 // Sound effects
