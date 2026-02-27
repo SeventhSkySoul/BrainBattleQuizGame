@@ -18,6 +18,14 @@
   box-sizing: border-box;
 }
 
+/* Prevent text selection on interactive/UI elements */
+h1, h2, h3, h4, h5, h6,
+button, .bb-btn, .bb-badge, .pin-char,
+nav, .logo-3d {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 body {
   margin: 0;
   background: var(--bg);
