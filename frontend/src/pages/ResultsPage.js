@@ -100,7 +100,7 @@ export default function ResultsPage() {
     if (winner === 'draw') winnerText = 'НИЧЬЯ!';
     else {
       winnerText = `ПОБЕДА КОМАНДЫ ${winner === 'A' ? 'А' : 'Б'}!`;
-      winnerColor = winner === 'A' ? '#FF6B35' : '#00B4D8';
+      winnerColor = winner === 'A' ? tc.A.text : tc.B.text;
     }
   } else {
     const winPlayer = players.find(p => p.id === winner);
