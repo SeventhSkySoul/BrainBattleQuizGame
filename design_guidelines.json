@@ -1,0 +1,127 @@
+{
+  "identity": {
+    "name": "BrainBattle",
+    "theme_name": "The Void Terminal",
+    "core_concept": "A high-stakes intellectual arena set in a digital void. Raw, brutalist, and precise.",
+    "emotional_tone": "Competitive, Mysterious, Electric, Raw",
+    "target_audience": "Gen Z students, Hackers, Gamers"
+  },
+  "typography": {
+    "primary_font": "Syne",
+    "secondary_font": "Space Mono",
+    "install_instructions": "Add to index.html: <link href='https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap' rel='stylesheet'>",
+    "usage": {
+      "headings": "font-['Syne'] font-extrabold tracking-tight uppercase",
+      "body": "font-['Space_Mono'] tracking-wide",
+      "ui_elements": "font-['Space_Mono'] uppercase text-xs tracking-widest"
+    }
+  },
+  "colors": {
+    "background": "#050505",
+    "surface": "#0A0A0A",
+    "border": "#262626",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A3A3A3",
+    "accent_primary": "#CCFF00",
+    "accent_secondary": "#FF3366",
+    "accent_tertiary": "#00F0FF",
+    "utility_success": "#CCFF00",
+    "utility_error": "#FF3366",
+    "utility_warning": "#FFD600",
+    "overlay": "rgba(5, 5, 5, 0.8)"
+  },
+  "layout": {
+    "grid_system": "Bento Grid (Asymmetrical)",
+    "container_padding": "p-6 md:p-12 lg:p-24",
+    "spacing_scale": "Relaxed (gap-6 to gap-12)",
+    "border_radius": "rounded-none",
+    "glassmorphism": "backdrop-blur-md bg-black/40 border border-white/10"
+  },
+  "components": {
+    "Button": {
+      "base": "rounded-none border border-white/20 bg-transparent px-8 py-4 font-['Space_Mono'] uppercase tracking-widest text-white transition-all duration-300",
+      "hover": "hover:bg-[#CCFF00] hover:text-black hover:border-[#CCFF00] hover:shadow-[0_0_20px_rgba(204,255,0,0.4)]",
+      "active": "active:scale-95",
+      "variants": {
+        "primary": "bg-[#CCFF00] text-black border-[#CCFF00] hover:bg-white hover:border-white",
+        "outline": "border-white/40 hover:border-[#CCFF00] hover:text-[#CCFF00]",
+        "ghost": "border-transparent hover:bg-white/5"
+      }
+    },
+    "Input": {
+      "base": "rounded-none border-b-2 border-white/20 bg-transparent px-0 py-4 font-['Space_Mono'] text-lg text-white placeholder:text-white/30 focus:border-[#CCFF00] focus:outline-none focus:ring-0 transition-colors"
+    },
+    "Card": {
+      "base": "rounded-none border border-white/10 bg-[#0A0A0A] p-8 hover:border-white/30 transition-colors relative overflow-hidden group"
+    },
+    "Badge": {
+      "base": "rounded-none border border-[#CCFF00] bg-[#CCFF00]/10 px-3 py-1 font-['Space_Mono'] text-xs font-bold text-[#CCFF00] uppercase"
+    }
+  },
+  "visual_enhancers": {
+    "noise_overlay": "fixed inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]",
+    "glow_effects": "shadow-[0_0_30px_rgba(204,255,0,0.1)]",
+    "grid_background": "bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]",
+    "3d_elements": "Abstract geometric shapes (Tetrahedrons, Icosahedrons) floating in void using React Three Fiber"
+  },
+  "motion": {
+    "page_transition": "initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}",
+    "hover_lift": "hover:-translate-y-1 transition-transform duration-300",
+    "text_reveal": "staggered character reveal",
+    "glitch_effect": "occasional css glitch on hover for headings"
+  },
+  "assets": {
+    "libraries_to_install": [
+      "three @types/three @react-three/fiber @react-three/drei",
+      "framer-motion",
+      "lucide-react",
+      "clsx tailwind-merge",
+      "sonner"
+    ],
+    "icons": "Lucide React (sharp, thin stroke)",
+    "images": {
+      "hero_bg": "Use 3D canvas instead of static image",
+      "fallback_textures": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
+    }
+  },
+  "pages_guide": {
+    "Landing": {
+      "structure": "Hero (3D interactive logo + PIN input) -> Feature Grid (Bento style) -> CTA",
+      "vibe": "Cinematic entry. The PIN input should feel like launching a missile."
+    },
+    "Lobby": {
+      "structure": "Split screen. Left: Team A (Red/Orange), Right: Team B (Blue/Cyan). Center: VS badge.",
+      "vibe": "Tension building. Pulse animations."
+    },
+    "Game": {
+      "structure": "Question (Center, Huge text). Answers (Grid 2x2). Timer (Progress bar top).",
+      "vibe": "High focus. Minimal distractions. Explosion effects on correct answer."
+    },
+    "Leaderboard": {
+      "structure": "Vertical list, but rank 1 is massive. Glitch effects on score updates.",
+      "vibe": "Hall of Fame / Hall of Shame."
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. INSTALL FONTS FIRST: Add the Google Fonts link to public/index.html head.",
+    "2. SETUP TAILWIND: Update tailwind.config.js to extend theme with colors and fonts defined above.",
+    "3. GLOBAL STYLES: Add the noise overlay to App.tsx or index.css so it persists everywhere.",
+    "4. COMPONENTS: Build the 'BrutalistButton' and 'BrutalistCard' first, then use them everywhere. Do not use default Shadcn styles; override them heavily with rounded-none and distinct borders.",
+    "5. 3D: Create a <Background3D /> component using R3F. Keep it lightweight (low poly count, simple rotation).",
+    "6. ANIMATION: Wrap page content in <motion.div> for smooth entry.",
+    "7. DATA-TESTID: Ensure every interactive element has a data-testid attribute."
+  ],
+  "UNIVERSAL_GUIDELINES": {
+    "do_not": [
+      "Do not use rounded corners > 2px.",
+      "Do not use gradients on text.",
+      "Do not use standard blue/primary colors.",
+      "Do not center text unless it is a massive headline."
+    ],
+    "must_do": [
+      "Use uppercase for labels and buttons.",
+      "Use 'Space Mono' for all data/numbers.",
+      "Ensure high contrast (WCAG AA) - use white on black, black on acid green."
+    ]
+  }
+}
