@@ -332,7 +332,12 @@ select.bb-input option {
 @media (max-width: 640px) {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.25rem; }
-  .bb-btn { padding: 0.75rem 1.25rem; font-size: 0.65rem; }
+  .bb-btn { padding: 0.6rem 0.875rem; font-size: 0.6rem; letter-spacing: 0.05em; }
+  .logo-3d { width: 44px; height: 44px; font-size: 0.9rem; }
+}
+
+@media (max-width: 400px) {
+  .bb-btn { padding: 0.5rem 0.6rem; font-size: 0.55rem; }
 }
 
 /* PIN display */
