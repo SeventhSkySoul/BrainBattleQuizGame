@@ -309,7 +309,7 @@ export default function GamePage() {
   const qNum = game.current_question_index + 1;
   const isHost = game.host_id === currentPlayerId;
   const timerPercent = (timeLeft / (game.time_per_question || 30)) * 100;
-  const timerColor = timerPercent > 50 ? '#CCFF00' : timerPercent > 25 ? '#FFD600' : '#FF3366';
+  const timerColor = timerPercent > 50 ? '#3455eb' : timerPercent > 25 ? '#FFD600' : '#FF3366';
 
   const currentTeam = game.mode === 'teams' ? game.current_team : null;
   const teamColor = currentTeam ? TEAM_COLORS[currentTeam] : null;
@@ -335,7 +335,7 @@ export default function GamePage() {
       
       {/* Top bar */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-        <div style={{ fontFamily: 'Syne', fontWeight: 900, fontSize: '1rem', color: '#CCFF00' }}>
+        <div style={{ fontFamily: 'Syne', fontWeight: 900, fontSize: '1rem', color: '#3455eb' }}>
           BRAIN<span style={{ color: '#FF3366' }}>BATTLE</span>
         </div>
         
