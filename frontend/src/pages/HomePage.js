@@ -483,7 +483,7 @@ export default function HomePage() {
                       <div>
                         <label style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'Space Mono', fontSize: '0.65rem', color: '#A3A3A3', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.5rem' }}>
                           <span>ВРЕМЯ НА ВОПРОС</span>
-                          <span style={{ color: '#CCFF00' }}>{timePerQ}с</span>
+                          <span style={{ color: '#3455eb' }}>{timePerQ}с</span>
                         </label>
                         <input
                           type="range"
@@ -491,7 +491,7 @@ export default function HomePage() {
                           value={timePerQ}
                           onChange={e => setTimePerQ(parseInt(e.target.value))}
                           data-testid="range-time"
-                          style={{ width: '100%', accentColor: '#CCFF00' }}
+                          style={{ width: '100%', accentColor: '#3455eb' }}
                         />
                       </div>
                     </motion.div>
