@@ -156,6 +156,7 @@ export default function LobbyPage() {
   const isHost = game?.host_id === currentPlayerId;
   const currentPlayer = game?.players?.find(p => p.id === currentPlayerId);
   const currentTeam = currentPlayer?.team;
+  const tc = getTeamColors(game);
   const teamAPlayers = game?.players?.filter(p => p.team === 'A') || [];
   const teamBPlayers = game?.players?.filter(p => p.team === 'B') || [];
   const allPlayers = game?.players || [];
