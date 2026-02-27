@@ -435,9 +435,9 @@ export default function HomePage() {
                         onClick={() => setGameMode(m.id)}
                         data-testid={`mode-${m.id}`}
                         style={{
-                          padding: '0.75rem', border: `1px solid ${gameMode === m.id ? '#CCFF00' : '#262626'}`,
-                          background: gameMode === m.id ? 'rgba(204,255,0,0.1)' : '#0A0A0A',
-                          color: gameMode === m.id ? '#CCFF00' : '#A3A3A3',
+                          padding: '0.75rem', border: `1px solid ${gameMode === m.id ? '#3455eb' : '#262626'}`,
+                          background: gameMode === m.id ? 'rgba(52,85,235,0.1)' : '#0A0A0A',
+                          color: gameMode === m.id ? '#3455eb' : '#A3A3A3',
                           cursor: 'pointer', fontFamily: 'Space Mono', fontSize: '0.65rem',
                           textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'all 0.2s',
                           textAlign: 'left',
