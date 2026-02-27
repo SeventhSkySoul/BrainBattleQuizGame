@@ -87,6 +87,7 @@ export default function ResultsPage() {
   const players = gameData.players || [];
   const scores = gameData.scores || { A: 0, B: 0 };
   const history = gameData.round_history || [];
+  const tc = getTeamColors(gameData);
   
   // Sort players by score
   const sortedPlayers = [...players].sort((a, b) => (b.score || 0) - (a.score || 0));
