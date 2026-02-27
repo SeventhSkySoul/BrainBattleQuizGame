@@ -282,8 +282,8 @@ export default function HomePage() {
                 data-testid={`tab-${tab.id}`}
                 style={{
                   flex: 1, padding: '0.875rem', background: 'none', border: 'none',
-                  borderBottom: `2px solid ${mode === tab.id ? '#CCFF00' : 'transparent'}`,
-                  color: mode === tab.id ? '#CCFF00' : '#A3A3A3',
+                  borderBottom: `2px solid ${mode === tab.id ? '#3455eb' : 'transparent'}`,
+                  color: mode === tab.id ? '#3455eb' : '#A3A3A3',
                   fontFamily: 'Space Mono', fontSize: '0.7rem', textTransform: 'uppercase',
                   letterSpacing: '0.1em', cursor: 'pointer', transition: 'all 0.2s',
                   marginBottom: '-1px',
