@@ -379,7 +379,7 @@ export default function LobbyPage() {
       {!isHost && (
         <div style={{ textAlign: 'center', color: '#A3A3A3', fontFamily: 'Space Mono', fontSize: '0.75rem', marginTop: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#CCFF00', animation: 'pulse-green 2s infinite' }} className="pulse-accent" />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#3455eb', animation: 'pulse-accent 2s infinite' }} className="pulse-accent" />
             ОЖИДАНИЕ ВЕДУЩЕГО...
           </div>
         </div>
