@@ -960,11 +960,12 @@ async def websocket_endpoint(ws: WebSocket, game_id: str, player_id: str):
         if player_id in player_ws_map:
             del player_ws_map[player_id]
         
-        # Remove disconnected player from waiting room
+        # Remove disconnected player from game (waiting room AND active game)
         for game in active_games.values():
-            if game["id"] == game_id and game["state"] == "waiting":
+            if game["id"] == game_id:
                 player = next((p for p in game["players"] if p["id"] == player_id and not p.get("is_host")), None)
                 if player:
+                    # Always remove from player list and teams
                     game["players"] = [p for p in game["players"] if p["id"] != player_id]
                     for team in ["A", "B"]:
                         if player_id in game["teams"][team]:
