@@ -238,9 +238,9 @@ export default function LobbyPage() {
           </div>
 
           {/* Team B */}
-          <div style={{ flex: 1, minWidth: 0, border: '1px solid rgba(0,180,216,0.3)', padding: '0.875rem', background: 'rgba(0,180,216,0.02)' }}>
+          <div style={{ flex: 1, minWidth: 0, border: `1px solid ${tc.B.border}`, padding: '0.875rem', background: tc.B.bg }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', userSelect: 'none' }}>
-              <div style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: '0.85rem', color: '#00B4D8' }}>КОМ. Б</div>
+              <div style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: '0.85rem', color: tc.B.text }}>КОМАНДА Б</div>
               <div style={{ fontFamily: 'Space Mono', fontSize: '0.6rem', color: '#A3A3A3' }}>{teamBPlayers.length}</div>
             </div>
             <AnimatePresence>
